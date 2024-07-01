@@ -1,4 +1,4 @@
-from import_data import client
+from open_db_connection import client
 
 
 def close_db_connection(connection):

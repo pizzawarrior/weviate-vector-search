@@ -1,26 +1,22 @@
-import weaviate
-import os
 from dotenv import load_dotenv
+import weaviate.classes as wvc
+from open_db_connection import client
+from data.query_vector import query_vector
+
 
 load_dotenv()
 
-client = weaviate.connect_to_weaviate_cloud(
-    cluster_url=os.getenv("WCD_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCD_API_KEY")),
-    headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]
-    }
-)
-
 try:
+    client.connect()
     questions = client.collections.get("Question")
 
-    response = questions.query.near_text(
-        query="biology",
-        limit=2
+    response = questions.query.near_vector(
+        near_vector=query_vector,
+        limit=2,
+        return_metadata=wvc.query.MetadataQuery(certainty=True)
     )
 
-    print(response.objects[0].properties)  # Inspect the first object
+    print(response)
 
 finally:
     client.close()  # Close client gracefully
