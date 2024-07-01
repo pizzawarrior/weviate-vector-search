@@ -1,13 +1,12 @@
-Currently Under Construction: Weviate/ Open API Vector Search
+A simple exploration of using Weaviate for vector search
 
-Notes:
-- remember to activate the virtual environment!
-`source .venv/bin/activate`
+To run this project locally:
+- you will need a Weaviate db instance with API key and database URL saved as .env variables
+1. Create and activate your virtual environment
+2. Install requirements.txt file: `pip install -r requirements.txt`
+3. Connect to the Weviate db: `python open_db_connection.py`. This should return TRUE in the console
+4. Create a collection in your db using provided data: `python build_collection.py`
+5. Insert data into your new collection: `python insert_data.py`
+5. Query data by running: `python queries.py`
 
-To run this project:
-1. connect to the Weviate db first: `python open_db_connection.py`. This should return TRUE in the console
-2. TODO: need to import the data to the collection. Current status:
-weaviate.exceptions.WeaviateInsertManyAllFailedError: Every object failed during insertion. Here is the set of all errors: connection to: OpenAI API failed with status: 429 error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
-- This appears to be an OpenAPI error, currently troubleshooting
-3. The db connection can be stopped by running `python close_db_connection.py`
-4. We can run queries on the provided data by running `python queries.py`
+- The db connection can be stopped by running `python close_db_connection.py`

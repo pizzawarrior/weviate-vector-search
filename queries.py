@@ -16,7 +16,6 @@ try:
         return_metadata=wvc.query.MetadataQuery(certainty=True)
     )
 
-    # print(response)
     for o in response.objects:
         print(f"Question: {o.properties['question']}")
         print(f"Answer: {o.properties['answer']}")
