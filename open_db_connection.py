@@ -13,7 +13,7 @@ client = weaviate.connect_to_wcs(
     auth_credentials=weaviate.auth.AuthApiKey(APIKEY),
 )
 
-print(client.is_ready())
+print(f'Database connection established: {client.is_ready()}')
 
 # questions = client.collections.get("Question")
 # print(questions)
